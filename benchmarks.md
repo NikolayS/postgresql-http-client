@@ -91,6 +91,13 @@ sys     0m0.000s
 
 Conclusion
 ===
+Results:
+Method | Latency, ms | TPS
+------------ | -------------
+pgsql-http (C) | 235.92 | 42.39
+plsh (curl) | 306.95 | 32.58
+plpython2u | 233.74 | 42.79
+
 The "plsh" approach has an obvious drawback: additional separate `curl` process is to be invoked for every query. 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
 extension, written in C, and plpython2u-based function.
