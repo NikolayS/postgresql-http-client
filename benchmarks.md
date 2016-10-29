@@ -49,10 +49,10 @@ Let's test 3 cases:
 ---
 ```sh
 postgres@dev:~$ #### http, localhost
-postgres@dev:~$ echo "select left(http_get.content, 50) from http_get('http://localhost/');" > ~/local_http_c.sql
-postgres@dev:~$ echo "select left(_get, 50) from http_client._get('http://localhost/', 2);" > ~/local_http_plsh.sql
-postgres@dev:~$ echo "select left(get, 50) from get('http://localhost/');" > ~/local_http_python.sql
-postgres@dev:~$ echo "select left(get_python3, 50) from get_python3('http://localhost/');" > ~/local_http_python3.sql
+postgres@dev:~$ echo "select left(http_get.content, 50) from http_get('http://localhost/robots.txt');" > ~/local_http_c.sql
+postgres@dev:~$ echo "select left(_get, 50) from http_client._get('http://localhost/robots.txt', 2);" > ~/local_http_plsh.sql
+postgres@dev:~$ echo "select left(get, 50) from get('http://localhost/robots.txt');" > ~/local_http_python.sql
+postgres@dev:~$ echo "select left(get_python3, 50) from get_python3('http://localhost/robots.txt');" > ~/local_http_python3.sql
 postgres@dev:~$ pgbench -f ~/local_http_c.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/local_http_c.sql
@@ -62,9 +62,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 100
 number of transactions actually processed: 1000/1000
-latency average = 5.250 ms
-tps = 1904.627674 (including connections establishing)
-tps = 1915.319878 (excluding connections establishing)
+latency average = 5.013 ms
+tps = 1994.932871 (including connections establishing)
+tps = 2007.401692 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/local_http_plsh.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/local_http_plsh.sql
@@ -74,9 +74,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 100
 number of transactions actually processed: 1000/1000
-latency average = 19.543 ms
-tps = 511.693475 (including connections establishing)
-tps = 512.487107 (excluding connections establishing)
+latency average = 19.199 ms
+tps = 520.853950 (including connections establishing)
+tps = 521.675404 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/local_http_python.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/local_http_python.sql
@@ -86,9 +86,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 100
 number of transactions actually processed: 1000/1000
-latency average = 4.093 ms
-tps = 2443.022605 (including connections establishing)
-tps = 2461.714190 (excluding connections establishing)
+latency average = 2.203 ms
+tps = 4539.882871 (including connections establishing)
+tps = 4602.161543 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/local_http_python3.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/local_http_python3.sql
@@ -98,9 +98,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 100
 number of transactions actually processed: 1000/1000
-latency average = 4.611 ms
-tps = 2168.910404 (including connections establishing)
-tps = 2183.211150 (excluding connections establishing)
+latency average = 3.180 ms
+tps = 3144.268470 (including connections establishing)
+tps = 3175.129339 (excluding connections establishing)
 postgres@dev:~$ 
 postgres@dev:~$ 
 postgres@dev:~$ #### http, ya.ru
@@ -289,10 +289,10 @@ Conclusions
 
 Method | Latency, ms | TPS
 ------------ | ------------- | -------------
-pgsql-http (C) | 5.25 | 1915
-plsh (curl) | 19.5 | 512
-plpython2u | 4.09 | 2462
-plpython3u | 4.61 | 2183
+pgsql-http (C) | 5.01 | 2007
+plsh (curl) | 19.20 | 521.6
+plpython2u | 2.20 | 4602
+plpython3u | 3.18 | 3175
 
 ### Results for HTTP, ya.ru:
 
