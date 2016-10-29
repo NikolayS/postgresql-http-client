@@ -91,7 +91,7 @@ sys     0m0.000s
 
 Conclusion
 ===
-The "plsh" approach has an obvious drawback (additional `curl` process). 
+The "plsh" approach has an obvious drawback: additional separate `curl` process is to be invoked for every query. 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
 extension, written in C, and plpython2u-based function.
 
