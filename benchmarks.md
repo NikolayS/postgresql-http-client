@@ -92,8 +92,9 @@ sys     0m0.000s
 Conclusion
 ===
 Results:
+
 Method | Latency, ms | TPS
------------- | -------------
+------------ | ------------- | -------------
 pgsql-http (C) | 235.92 | 42.39
 plsh (curl) | 306.95 | 32.58
 plpython2u | 233.74 | 42.79
