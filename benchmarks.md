@@ -1,6 +1,8 @@
 The Benchmark of Different Approaches to Do HTTP Requests from PostgreSQL
 ===
 
+TL;DR, jump to [Conclusions](#Conclusions)
+
 Preparations
 ---
 
@@ -38,8 +40,6 @@ language plpython3u volatile;
 ```
 
 Benchmark
-
-TL;DR, jump to [Conclusion](#Conclusions)
 
 Let's test 3 cases:
  - http, localhost
