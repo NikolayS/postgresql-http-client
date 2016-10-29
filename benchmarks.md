@@ -1,7 +1,7 @@
 Preparations
 ===
 
-```sql
+```
 create extension pgsql-http;-- https://github.com/pramsey/pgsql-http
 
 create extension plsh;
