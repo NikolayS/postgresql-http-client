@@ -323,6 +323,6 @@ There is practically no difference between plpython2u and plpython3u functions.
 The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't seem to perform better than plpython2u function. However, pgsql-http is better in terms of memory consumption (in the examples above, postgres+plpythonu took ~20% more RAM than postgres backends with pgsql-http; for plsh, postgres backend combined with curl process took the same RAM resources as postgres+plpythonu backend).
 
 The plpython2u-based approach wins because:
- - it's not slower than pgsql-http 
+ - it's definitely not slower than pgsql-http (sometimes even faster)
  - it's much easier to deploy.
  - RAM consumption is not signifcantly worse than in case of pgsql-http
