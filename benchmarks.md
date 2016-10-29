@@ -2,8 +2,10 @@ Preparations
 ===
 
 ```
+-- pgsql-http (C)
 create extension pgsql-http;-- https://github.com/pramsey/pgsql-http
 
+-- plsh (curl)
 create extension plsh;
 create schema http_client;
 create or replace function http_client._get(text, integer) returns text as $$
@@ -11,15 +13,14 @@ create or replace function http_client._get(text, integer) returns text as $$
 curl -i --connect-timeout $2 "$1" 2>/dev/null
 $$ language plsh;
 
+-- plpython2u
 create extension plpython2u;
-create or replace function get(uri character varying)
-  returns text as
-$body$
-import urllib2
-data = urllib2.urlopen(uri)
-return data.read()
-$body$
-  language plpython2u volatile cost 100;
+create or replace function get(uri character varying) returns text as $$
+  import urllib2
+  data = urllib2.urlopen(uri)
+  return data.read()
+$$
+language plpython2u volatile;
 ```
 
 Benchmarks
