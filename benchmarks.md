@@ -327,6 +327,6 @@ The plpython2u-based approach wins because:
  - it's much easier to deploy.
  - RAM consumption is not signifcantly worse than in case of pgsql-http
  
- Credits
- ===
- Many thanks to [@ruslantalpa](https://github.com/ruslantalpa) for great suggestions.
+Credits
+===
+Many thanks to [@ruslantalpa](https://github.com/ruslantalpa) for great suggestions.
