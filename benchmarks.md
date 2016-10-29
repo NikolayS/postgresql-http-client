@@ -40,13 +40,13 @@ language plpython3u volatile;
 ```
 
 Benchmark
+---
 
 Let's test 3 cases:
  - http, localhost
  - http, ya.ru (answers with redirect, empty body)
  - https, ya.ru
 
----
 ```sh
 postgres@dev:~$ #### http, localhost
 postgres@dev:~$ echo "select left(http_get.content, 50) from http_get('http://localhost/robots.txt');" > ~/local_http_c.sql
