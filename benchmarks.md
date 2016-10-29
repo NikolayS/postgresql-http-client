@@ -2,6 +2,8 @@ Preparations
 ===
 
 ```
+-- Postgres version: PostgreSQL 9.6.1 on x86_64-pc-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit
+
 -- pgsql-http (C)
 create extension pgsql-http;-- https://github.com/pramsey/pgsql-http
 
