@@ -1,5 +1,5 @@
 # postgresql-http-client
-Simple HTTP client inside your PostgreSQL. Easy to install. No compilation required: no gcc, no `make && make install`. Made with two extensions, plpgsql and plsh.
+Simple HTTP client inside your PostgreSQL. Easy to install. No compilation required: no gcc, no `make && make install`. Uses only standard extension available in any popular Linux distribution.
 
 Allows GET and POSTS requests in SQL environment:
 
