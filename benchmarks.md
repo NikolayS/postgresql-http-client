@@ -1,4 +1,5 @@
-Preparations:
+Preparations
+===
 
 ```sql
 create extension pgsql-http;-- https://github.com/pramsey/pgsql-http
@@ -21,6 +22,8 @@ $BODY$
   LANGUAGE plpython2u VOLATILE COST 100;
 ```
 
+Benchmarks
+===
 ```sh
 echo "select left(http_get.content, 50) from http_get('https://ya.ru');" > ~/http_c.sql
 echo "select left(_get, 50) from http_client._get('https://ya.ru', 2);" > ~/http_plsh.sql
