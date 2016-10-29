@@ -107,11 +107,10 @@ rtt min/avg/max/mdev = 41.927/41.962/41.982/0.024 ms
 postgres@dev:~$ time curl https://ya.ru >/dev/null
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  9457  100  9457    0     0  30494      0 --:--:-- --:--:-- --:--:-- 30704
-
-real    0m0.322s
-user    0m0.016s
-sys     0m0.000s
+100  9456  100  9456    0     0  38676      0 --:--:-- --:--:-- --:--:-- 38913
+real    0m0.257s
+user    0m0.012s
+sys     0m0.004s
 ```
 
 Conclusion
