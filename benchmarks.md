@@ -31,42 +31,42 @@ echo "select left(get, 50) from get('https://ya.ru');" > ~/http_python.sql
 postgres@dev:~$
 postgres@dev:~$
 postgres@dev:~$
-postgres@dev:~$ pgbench -f ~/http_c.sql -c 10 -t 10 test
+postgres@dev:~$ pgbench -f ~/http_c.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/http_c.sql
 scaling factor: 1
 query mode: simple
 number of clients: 10
 number of threads: 1
-number of transactions per client: 10
-number of transactions actually processed: 100/100
-latency average = 245.644 ms
-tps = 40.709286 (including connections establishing)
-tps = 40.758652 (excluding connections establishing)
-postgres@dev:~$ pgbench -f ~/http_plsh.sql -c 10 -t 10 test
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 235.928 ms
+tps = 42.385814 (including connections establishing)
+tps = 42.390860 (excluding connections establishing)
+postgres@dev:~$ pgbench -f ~/http_plsh.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/http_plsh.sql
 scaling factor: 1
 query mode: simple
 number of clients: 10
 number of threads: 1
-number of transactions per client: 10
-number of transactions actually processed: 100/100
-latency average = 312.815 ms
-tps = 31.967766 (including connections establishing)
-tps = 31.998174 (excluding connections establishing)
-postgres@dev:~$ pgbench -f ~/http_python.sql -c 10 -t 10 test
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 306.951 ms
+tps = 32.578475 (including connections establishing)
+tps = 32.581800 (excluding connections establishing)
+postgres@dev:~$ pgbench -f ~/http_python.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/http_python.sql
 scaling factor: 1
 query mode: simple
 number of clients: 10
 number of threads: 1
-number of transactions per client: 10
-number of transactions actually processed: 100/100
-latency average = 244.888 ms
-tps = 40.834994 (including connections establishing)
-tps = 40.880977 (excluding connections establishing)
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 233.735 ms
+tps = 42.783469 (including connections establishing)
+tps = 42.789140 (excluding connections establishing)
 postgres@dev:~$
 postgres@dev:~$
 postgres@dev:~$
@@ -95,6 +95,6 @@ The "plsh" approach has an obvious drawback: additional separate `curl` process 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
 extension, written in C, and plpython2u-based function.
 
-At the same time, plpython2u-based function showed very similar performance compared to pgsql-http.
+At the same time, plpython2u-based function showed very similar (sometimes even better) performance compared to pgsql-http.
 
 The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't seem to perform better than plpython2u function.
