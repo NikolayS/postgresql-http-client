@@ -1,7 +1,7 @@
 The Benchmark of Different Approaches to Do HTTP Requests from PostgreSQL
 ===
 
-TL;DR, jump to [Conclusions](#conclusions)
+TL;DR: jump to [Conclusions](#conclusions)
 
 Preparations
 ---
