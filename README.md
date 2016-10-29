@@ -18,11 +18,9 @@ is_json     | f
 
 Another example, showing work with REST API:
 ```sql
-test=# with data as (
-  select (get).*
+test=# with results as (
+  select jsonb_array_elements(get.body_jsonb->'results') as r
   from http_client.get('http://pokeapi.co/api/v2/pokemon/')
-), results as (
-  select jsonb_array_elements(body_jsonb->'results') r from data
 )
 select r->>'url' as url, r->>'name' as pokename
 from results
