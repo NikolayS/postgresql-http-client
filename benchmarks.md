@@ -40,9 +40,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 10
 number of transactions actually processed: 100/100
-latency average = 245.738 ms
-tps = 40.693780 (including connections establishing)
-tps = 40.746296 (excluding connections establishing)
+latency average = 245.644 ms
+tps = 40.709286 (including connections establishing)
+tps = 40.758652 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/http_plsh.sql -c 10 -t 10 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/http_plsh.sql
@@ -52,9 +52,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 10
 number of transactions actually processed: 100/100
-latency average = 308.031 ms
-tps = 32.464254 (including connections establishing)
-tps = 32.496800 (excluding connections establishing)
+latency average = 312.815 ms
+tps = 31.967766 (including connections establishing)
+tps = 31.998174 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/http_python.sql -c 10 -t 10 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/http_python.sql
@@ -64,9 +64,9 @@ number of clients: 10
 number of threads: 1
 number of transactions per client: 10
 number of transactions actually processed: 100/100
-latency average = 250.369 ms
-tps = 39.941063 (including connections establishing)
-tps = 39.991098 (excluding connections establishing)
+latency average = 244.888 ms
+tps = 40.834994 (including connections establishing)
+tps = 40.880977 (excluding connections establishing)
 postgres@dev:~$
 postgres@dev:~$
 postgres@dev:~$
@@ -95,4 +95,6 @@ The "plsh" approach has an obvious drawback: additional separate `curl` process 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
 extension, written in C, and plpython2u-based function.
 
-At the same time, plpython2u-based function showed slightly better performance compared to pgsql-http.
+At the same time, plpython2u-based function showed very similar performance compared to pgsql-http.
+
+The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't seem to perform better than plpython2u function.
