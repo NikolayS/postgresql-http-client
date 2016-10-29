@@ -1,7 +1,7 @@
 The Benchmark of Different Approaches to Do HTTP Requests from PostgreSQL
 ===
 
-TL;DR, jump to [Conclusions](#Conclusions)
+TL;DR, jump to [Conclusions](#conclusions)
 
 Preparations
 ---
@@ -285,7 +285,7 @@ postgres 10812  3.3  0.1 4562784 32000 ?       Ss   07:33   0:00  \_ postgres: p
 
 Conclusions
 ---
-# Results for HTTP, localhost:
+### Results for HTTP, localhost:
 
 Method | Latency, ms | TPS
 ------------ | ------------- | -------------
@@ -294,7 +294,7 @@ plsh (curl) | 19.5 | 512
 plpython2u | 4.09 | 2462
 plpython3u | 4.61 | 2183
 
-# Results for HTTP, ya.ru:
+### Results for HTTP, ya.ru:
 
 Method | Latency, ms | TPS
 ------------ | ------------- | -------------
@@ -303,7 +303,7 @@ plsh (curl) | 121.4 | 82.38
 plpython2u | 106.0 | 94.32
 plpython3u | 106.0 | 94.35
 
-# Results for HTTPS, ya.ru:
+### Results for HTTPS, ya.ru:
 
 Method | Latency, ms | TPS | RSS, MB
 ------------ | ------------- | ------------- | -------------
