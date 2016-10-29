@@ -168,12 +168,12 @@ Conclusion
 ---
 Results:
 
-Method | Latency, ms | TPS | RSS
+Method | Latency, ms | TPS | RSS, MB
 ------------ | ------------- | ------------- | -------------
-pgsql-http (C) | 235.92 | 42.39 | ~24MB
-plsh (curl) | 306.95 | 32.58 | ~30MB (19324+3288+7732)
-plpython2u | 233.74 | 42.79 | ~30MB
-plpython3u | 234.20 | 42.70 | ~32MB
+pgsql-http (C) | 235.92 | 42.39 | ~24
+plsh (curl) | 306.95 | 32.58 | ~30 (19324kB+3288kB+7732kB)
+plpython2u | 233.74 | 42.79 | ~30
+plpython3u | 234.20 | 42.70 | ~32
 
 The "plsh" approach has an obvious drawback: additional separate `curl` process is to be invoked for every query. 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
