@@ -1,4 +1,4 @@
-The Benchmark of Different Approaches to Run HTTP Queries Inside PostgreSQL
+The Benchmark of Different Approaches to Do HTTP Requests from PostgreSQL
 ===
 
 Preparations
