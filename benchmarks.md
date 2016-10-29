@@ -95,22 +95,38 @@ tps = 42.704341 (excluding connections establishing)
 postgres@dev:~$
 postgres@dev:~$
 postgres@dev:~$
-postgres@dev:~$ ping ya.ru
-PING ya.ru (213.180.204.3) 56(84) bytes of data.
-64 bytes from www.yandex.ru (213.180.204.3): icmp_seq=1 ttl=57 time=41.9 ms
-64 bytes from www.yandex.ru (213.180.204.3): icmp_seq=2 ttl=57 time=41.9 ms
-64 bytes from www.yandex.ru (213.180.204.3): icmp_seq=3 ttl=57 time=41.9 ms
-^C
+postgres@dev:~$ ping -c 5 ya.ru
+PING ya.ru (213.180.193.3) 56(84) bytes of data.
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=1 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=2 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=3 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=4 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=5 ttl=56 time=55.5 ms
+
 --- ya.ru ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2002ms
-rtt min/avg/max/mdev = 41.927/41.962/41.982/0.024 ms
-postgres@dev:~$ time curl https://ya.ru >/dev/null
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  9456  100  9456    0     0  38676      0 --:--:-- --:--:-- --:--:-- 38913
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 55.539/55.548/55.558/0.258 ms
+postgres@dev:~$ for i in {1..5}; do time curl https://ya.ru >/dev/null 2> /dev/null; done
+
 real    0m0.257s
-user    0m0.012s
+user    0m0.016s
+sys     0m0.000s
+
+real    0m0.286s
+user    0m0.016s
 sys     0m0.004s
+
+real    0m0.287s
+user    0m0.012s
+sys     0m0.000s
+
+real    0m0.252s
+user    0m0.008s
+sys     0m0.004s
+
+real    0m0.252s
+user    0m0.016s
+sys     0m0.000s
 ```
 
 Conclusion
