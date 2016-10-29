@@ -1,7 +1,8 @@
-Comparison of Different Approaches to Run HTTP Queries Inside PostgreSQL
+The Benchmark of Different Approaches to Run HTTP Queries Inside PostgreSQL
+===
 
 Preparations
-===
+---
 
 ```
 -- Postgres/Linux version: PostgreSQL 9.6.1 on x86_64-pc-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit
@@ -36,8 +37,8 @@ $$
 language plpython3u volatile;
 ```
 
-Benchmarks
-===
+Benchmark
+---
 ```sh
 echo "select left(http_get.content, 50) from http_get('https://ya.ru');" > ~/http_c.sql
 echo "select left(_get, 50) from http_client._get('https://ya.ru', 2);" > ~/http_plsh.sql
@@ -142,7 +143,7 @@ sys     0m0.000s
 ```
 
 Conclusion
-===
+---
 Results:
 
 Method | Latency, ms | TPS
