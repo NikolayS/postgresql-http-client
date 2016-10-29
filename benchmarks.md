@@ -95,18 +95,28 @@ tps = 42.704341 (excluding connections establishing)
 postgres@dev:~$
 postgres@dev:~$
 postgres@dev:~$
-postgres@dev:~$ ping -c 5 ya.ru
+postgres@dev:~$ ping -c 500 ya.ru # check that RTT to ya.ru is VERY stable
 PING ya.ru (213.180.193.3) 56(84) bytes of data.
 64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=1 ttl=56 time=55.5 ms
 64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=2 ttl=56 time=55.5 ms
 64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=3 ttl=56 time=55.5 ms
-64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=4 ttl=56 time=55.5 ms
-64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=5 ttl=56 time=55.5 ms
+...
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=497 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=498 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=499 ttl=56 time=55.5 ms
+64 bytes from www.yandex.ru (213.180.193.3): icmp_seq=500 ttl=56 time=55.5 ms
+
+--- ya.ru ping statistics ---
+500 packets transmitted, 500 received, 0% packet loss, time 499791ms
+rtt min/avg/max/mdev = 55.462/55.546/55.884/0.243 ms
 
 --- ya.ru ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 4006ms
 rtt min/avg/max/mdev = 55.539/55.548/55.558/0.258 ms
-postgres@dev:~$ for i in {1..5}; do time curl https://ya.ru >/dev/null 2> /dev/null; done
+postgres@dev:~$
+postgres@dev:~$
+postgres@dev:~$ # curl is less stable, but also not bad
+postgres@dev:~$ for i in {1..5}; do time curl https://ya.ru >/dev/null 2> /dev/null; done 
 
 real    0m0.257s
 user    0m0.016s
