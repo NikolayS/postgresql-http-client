@@ -4,9 +4,9 @@ Simple HTTP client inside your PostgreSQL. Easy to install. No compilation requi
 Allows GET and POSTS requests in SQL environment:
 
 ```sql
-test=# \x
+test=> \x
 Expanded display is on.
-test=# select (get).* from http_client.get('http://ya.ru');
+test=> select (get).* from http_client.get('http://ya.ru');
 -[ RECORD 1 ]--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 status_code | 302
 status_line | HTTP/1.1 302 Found
@@ -18,7 +18,7 @@ is_json     | f
 
 Another example, showing work with REST API:
 ```sql
-test=# with results as (
+test=> with results as (
   select jsonb_array_elements(get.body_jsonb->'results') as r
   from http_client.get('http://pokeapi.co/api/v2/pokemon/')
 )
