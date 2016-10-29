@@ -8,10 +8,10 @@ Preparations
 -- Postgres/Linux version: PostgreSQL 9.6.1 on x86_64-pc-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit
 
 -- pgsql-http (C)
-create extension http;-- https://github.com/pramsey/pgsql-http
+create extension http; -- https://github.com/pramsey/pgsql-http - compile&install it beforehand
 
 -- plsh (curl)
-create extension plsh;
+create extension plsh; -- do beforehand: sudo apt-get install postgresql-9.6-plsh
 create schema http_client;
 create or replace function http_client._get(text, integer) returns text as $$
 #!/bin/sh
@@ -28,7 +28,7 @@ $$
 language plpython2u volatile;
 
 -- plpython3u
-create extension plpython3u;
+create extension plpython3u; -- do beforehand: sudo apt-get install postgresql-plpython3-9.6
 create or replace function get_python3(uri character varying) returns text as $$
   from urllib.request import urlopen
   data = urlopen(uri)
