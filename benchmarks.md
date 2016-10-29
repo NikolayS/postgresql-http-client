@@ -12,14 +12,14 @@ curl -i --connect-timeout $2 "$1" 2>/dev/null
 $$ language plsh;
 
 create extension plpython2u;
-CREATE OR REPLACE FUNCTION get(uri character varying)
-  RETURNS text AS
-$BODY$
+create or replace function get(uri character varying)
+  returns text as
+$body$
 import urllib2
 data = urllib2.urlopen(uri)
 return data.read()
-$BODY$
-  LANGUAGE plpython2u VOLATILE COST 100;
+$body$
+  language plpython2u volatile cost 100;
 ```
 
 Benchmarks
