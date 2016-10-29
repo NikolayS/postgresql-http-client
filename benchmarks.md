@@ -106,4 +106,6 @@ extension, written in C, and plpython2u-based function.
 
 At the same time, plpython2u-based function showed very similar (sometimes even better) performance compared to pgsql-http.
 
-The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't seem to perform better than plpython2u function. The plpython2u-based approach wins because it's not slower than pgsql-http and much easier to deploy.
+The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't seem to perform better than plpython2u function. The plpython2u-based approach wins because:
+ - it's not slower than pgsql-http 
+ - it's much easier to deploy.
