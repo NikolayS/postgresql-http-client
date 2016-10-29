@@ -142,16 +142,38 @@ user    0m0.016s
 sys     0m0.000s
 ```
 
+Memory consumption:
+```
+postgres@dev:~$  ### pgsql-http (C)
+postgres@dev:~$  ps -u postgres uf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+postgres 13381  2.0  0.1 4613684 24672 ?       Ss   07:34   0:00  \_ postgres: postgres test [local] SELECT
+postgres@dev:~$  ### plsh
+postgres@dev:~$  ps -u postgres uf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+postgres  7805  0.2  0.1 4525780 19324 ?       Ss   07:33   0:00  \_ postgres: postgres test [local] SELECT
+postgres  8672  0.0  0.0 135024  3288 ?        S    07:33   0:00  |   \_ /bin/sh /tmp/plsh-hDxrRx https://ya.ru 2
+postgres  8673  0.0  0.0 272324  7732 ?        S    07:33   0:00  |       \_ curl -i --connect-timeout 2 -H Accept: application/json https://ya.ru application/json https://ya.ru
+postgres@dev:~$  ### plpython2u
+postgres@dev:~$  ps -u postgres uf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+postgres 12235  3.0  0.1 4553668 29636 ?       Ss   07:34   0:00  \_ postgres: postgres test [local] SELECT
+postgres@dev:~$  ### plpython3u
+postgres@dev:~$  ps -u postgres uf
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+postgres 10812  3.3  0.1 4562784 32000 ?       Ss   07:33   0:00  \_ postgres: postgres test [local] SELECT
+```
+
 Conclusion
 ---
 Results:
 
-Method | Latency, ms | TPS
------------- | ------------- | -------------
-pgsql-http (C) | 235.92 | 42.39
-plsh (curl) | 306.95 | 32.58
-plpython2u | 233.74 | 42.79
-plpython3u | 234.20 | 42.70
+Method | Latency, ms | TPS | RSS
+------------ | ------------- | ------------- | -------------
+pgsql-http (C) | 235.92 | 42.39 | ~24MB
+plsh (curl) | 306.95 | 32.58 | ~30MB (19324+3288+7732)
+plpython2u | 233.74 | 42.79 | ~30MB
+plpython3u | 234.20 | 42.70 | ~30MB
 
 The "plsh" approach has an obvious drawback: additional separate `curl` process is to be invoked for every query. 
 As a result, it shows slower results compared to [pgsql-http](https://github.com/pramsey/pgsql-http) 
@@ -166,3 +188,4 @@ The bottom line: the [pgsql-http](https://github.com/pramsey/pgsql-http) doesn't
 The plpython2u-based approach wins because:
  - it's not slower than pgsql-http 
  - it's much easier to deploy.
+ - RAM consumption is not signifcantly worse than in case of pgsql-http
