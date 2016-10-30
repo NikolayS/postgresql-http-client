@@ -307,11 +307,11 @@ Conclusions
 
 Method | Latency, ms | TPS
 ------------ | ------------- | -------------
-pgsql-http (C) | 5.01 | 2007
+pgsql-http (C) | 5.01 | 2007.4
 plsh (curl) | 19.20 | 521.6
 plpython2u | 2.20 | 4602
 plpython2u-requests | 16.94 | 591.3
-plpython3u | 3.18 | 3175
+plpython3u | 3.18 | 3175.1
 
 ### Results for HTTP, ya.ru:
 
