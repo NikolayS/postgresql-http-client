@@ -28,6 +28,11 @@ create or replace function get(uri character varying) returns text as $$
   return data.read()
 $$
 language plpython2u volatile;
+create or replace function get_requests(uri character varying) returns text as $$
+import requests
+r = requests.get(uri)
+return r.text
+$$ language plpython2u volatile;
 
 -- plpython3u
 create extension plpython3u; -- do beforehand: sudo apt-get install postgresql-plpython3-9.6
@@ -52,6 +57,7 @@ postgres@dev:~$ #### http, localhost
 postgres@dev:~$ echo "select left(http_get.content, 50) from http_get('http://localhost/robots.txt');" > ~/local_http_c.sql
 postgres@dev:~$ echo "select left(_get, 50) from http_client._get('http://localhost/robots.txt', 2);" > ~/local_http_plsh.sql
 postgres@dev:~$ echo "select left(get, 50) from get('http://localhost/robots.txt');" > ~/local_http_python.sql
+postgres@dev:~$ echo "select left(get_requests, 50) from get_requests('http://localhost/robots.txt');" > ~/local_http_python_requests.sql
 postgres@dev:~$ echo "select left(get_python3, 50) from get_python3('http://localhost/robots.txt');" > ~/local_http_python3.sql
 postgres@dev:~$ pgbench -f ~/local_http_c.sql -c 10 -t 100 test
 starting vacuum...end.
@@ -89,6 +95,18 @@ number of transactions actually processed: 1000/1000
 latency average = 2.203 ms
 tps = 4539.882871 (including connections establishing)
 tps = 4602.161543 (excluding connections establishing)
+postgres@dev:~$ pgbench -f ~/local_http_python_requests.sql -c 10 -t 100 test
+starting vacuum...end.
+transaction type: /var/lib/postgresql/local_http_python_requests.sql
+scaling factor: 1
+query mode: simple
+number of clients: 10
+number of threads: 1
+number of transactions per client: 100
+number of transactions actually processed: 1000/1000
+latency average = 16.941 ms
+tps = 590.275913 (including connections establishing)
+tps = 591.321016 (excluding connections establishing)
 postgres@dev:~$ pgbench -f ~/local_http_python3.sql -c 10 -t 100 test
 starting vacuum...end.
 transaction type: /var/lib/postgresql/local_http_python3.sql
@@ -292,6 +310,7 @@ Method | Latency, ms | TPS
 pgsql-http (C) | 5.01 | 2007
 plsh (curl) | 19.20 | 521.6
 plpython2u | 2.20 | 4602
+plpython2u-requests | 16.94 | 591.3
 plpython3u | 3.18 | 3175
 
 ### Results for HTTP, ya.ru:
