@@ -28,6 +28,7 @@ create or replace function get(uri character varying) returns text as $$
   return data.read()
 $$
 language plpython2u volatile;
+-- also, try fancy "requests" library, which makes the code look very short & readable
 create or replace function get_requests(uri character varying) returns text as $$
 import requests
 r = requests.get(uri)
