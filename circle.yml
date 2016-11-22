@@ -3,7 +3,7 @@ machine:
         - postgresql
 dependencies:
     post:
-        - sudo sudo apt-get update && sudo apt-get install postgresql-contrib-9.5
+        - sudo sudo apt-get update && sudo apt-get install postgresql-plpython-9.5
 database:
     override:
         - sudo -u postgres psql -c "create database test;"
