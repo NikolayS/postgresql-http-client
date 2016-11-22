@@ -8,9 +8,8 @@ database:
     override:
         - sudo -u postgres psql -c "create database test;"
         - sudo -u postgres psql test -c "create extension if not exists plpythonu;"
-        - sudo -u postgres psql test -f ~/postgrest-google-translate/install.sql
+        - sudo -u postgres psql test -f ~/postgresql-http-client/install.sql
 test:
     override:
-        - sudo -u postgres psql test -v ON_ERROR_STOP=1 -f ~/postgrest-google-translate/uninstall_api.sql
-        - sudo -u postgres psql test -v ON_ERROR_STOP=1 -f ~/postgrest-google-translate/uninstall_core.sql
+        - sudo -u postgres psql test -v ON_ERROR_STOP=1 -f ~/postgresql-http-client/uninstall.sql
 
