@@ -3,6 +3,7 @@ create schema http_client;
 do $$
 begin
     execute 'alter database '||current_database()||' set http_client.connect_timeout = 2;';
+    execute 'alter database '||current_database()||' set http_client.default_headers = ''{}'';';
 end;
 $$ language plpgsql;
 
@@ -33,19 +34,16 @@ try:
         res['status_code'] = conn.getcode()
         res['url_received'] = conn.geturl()
         respHeaders = conn.info().dict
-        res['headers'] = json.dumps(respHeaders)
-        if 'content-type' in respHeaders and respHeaders['content-type'].find('application/json') >= 0:
-            res['is_json'] = True
-            #res['body_jsonb'] = json.loads(res['body']) # try/except
-        else:
-            res['is_json'] = False
         conn.close()
     except HTTPError as e:
         res['status_code'] = e.code
-        res['headers'] = json.dumps(e.headers.dict) # undocumented http://stackoverflow.com/a/6402083/4677351
+        respHeaders = e.headers.dict # undocumented http://stackoverflow.com/a/6402083/4677351
         res['body'] = e.read()
-
-
+    res['headers'] = json.dumps(respHeaders)
+    if 'content-type' in respHeaders and respHeaders['content-type'].find('application/json') >= 0:
+        res['is_json'] = True
+    else:
+        res['is_json'] = False
     return res
 except Exception as e:
     msg = "Error in http_clien._get(): exception {0} occured."
@@ -53,12 +51,15 @@ except Exception as e:
     return res
 $$ language plpython2u volatile;
 
-create or replace function http_client._post(
-
-create or replace function http_client.get(query text) returns http_client.response as $$
-    select http_client._get(query, current_setting('http_client.connect_timeout')::integer, null::jsonb);
+create or replace function http_client.get(query text, headers jsonb) returns http_client.response as $$
+    select http_client._get(
+        query,
+        current_setting('http_client.connect_timeout')::integer,
+        current_setting('http_client.default_headers')::jsonb || coalesce(headers, '{}'::jsonb)
+    );
 $$ language sql volatile;
 
-
-
+create or replace function http_client.get(query text) returns http_client.response as $$
+    select http_client.get(query, '{}'::jsonb);
+$$ language sql volatile;
 
