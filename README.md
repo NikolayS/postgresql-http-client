@@ -1,6 +1,8 @@
 # postgresql-http-client [![CircleCI](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master.svg?style=svg)](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master)
 Simple HTTP client inside your PostgreSQL. Easy to install. No compilation required: no gcc, no `make && make install`. Uses only standard extension available in any popular Linux distribution.
 
+Works very fast ([why](https://github.com/NikolayS/postgresql-http-client/blob/master/benchmarks.md)). BUT: be careful calling external/unpredictable resources because the population of Postgres backends one your server is about of the same size as the population of [Siberian tigers](https://en.wikipedia.org/wiki/Siberian_tiger).
+
 Allows GET and POSTS requests in SQL environment:
 
 ```sql
