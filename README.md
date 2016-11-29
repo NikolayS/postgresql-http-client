@@ -1,7 +1,5 @@
-# postgresql-http-client
+# postgresql-http-client [![CircleCI](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master.svg?style=svg)](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master)
 Simple HTTP client inside your PostgreSQL. Easy to install. No compilation required: no gcc, no `make && make install`. Uses only standard extension available in any popular Linux distribution.
-
-[![CircleCI](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master.svg?style=svg)](https://circleci.com/gh/NikolayS/postgresql-http-client/tree/master)
 
 Allows GET and POSTS requests in SQL environment:
 
