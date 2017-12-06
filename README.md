@@ -36,4 +36,19 @@ limit 5;
  http://pokeapi.co/api/v2/pokemon/12/ | butterfree
  http://pokeapi.co/api/v2/pokemon/10/ | caterpie
 (5 rows)
+
+## Installation
+
+Clone the code (`git clone ...`) and then execute in psql:
+```sql
+begin;
+\i /path/to/postgresql-http-client/install.sql
+commit;
+```
+
+## Uninstallation
+```sql
+\i /path/to/postgresql-http-client/uninstall.sql
+```
+
 ```
