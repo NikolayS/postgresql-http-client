@@ -36,6 +36,7 @@ limit 5;
  http://pokeapi.co/api/v2/pokemon/12/ | butterfree
  http://pokeapi.co/api/v2/pokemon/10/ | caterpie
 (5 rows)
+```
 
 ## Installation
 
