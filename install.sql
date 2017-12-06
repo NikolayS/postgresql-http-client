@@ -56,8 +56,8 @@ $$ language plpython2u volatile;
 create or replace function http_client.get(query text, headers jsonb) returns http_client.response as $$
     select http_client._get(
         query,
-        coalesce(current_setting('http_client.connect_timeout', true), '2')::integer,
-        coalesce(current_setting('http_client.default_headers', true), '{}')::jsonb || coalesce(headers, '{}'::jsonb)
+        coalesce(nullif(current_setting('http_client.connect_timeout', true), ''), '2')::integer,
+        coalesce(nullif(current_setting('http_client.default_headers', true), ''), '{}')::jsonb || coalesce(headers, '{}'::jsonb)
     );
 $$ language sql volatile;
 
