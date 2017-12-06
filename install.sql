@@ -1,3 +1,5 @@
+create extension if not exists plpython2u;
+
 create schema http_client;
 
 do $$
